@@ -1,4 +1,4 @@
-This is a quick-and-dirty proof-of-concept of mounting a Hyperdrive to a local folder.
+This is a quick proof-of-concept of mounting a Hyperdrive to a local folder.
 
 See https://docs.pears.com/building-blocks/hyperdrive
 It uses the awesome https://github.com/fuse-friends/fuse-native
