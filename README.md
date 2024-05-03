@@ -42,7 +42,7 @@ Supported operating sytems:
 
 ## Create a new hyperdrive and mount it
 
-`user@pc:~/fuse-mount-hyperdrive$ node /home/user/sources/fuse-mount-hyperdrive/fuse-mount-hyperdrive.js cache1 mnt1`
+`user@pc:~/fuse-mount-hyperdrive$ node fuse-mount-hyperdrive.js cache1 mnt1`
 
 ```
 Mounting drive...
@@ -54,7 +54,7 @@ unique: 1, opcode: INIT (26), nodeid: 0, insize: 56, pid: 0
 INIT: 7.27
 flags=0x003ffffb
 max_readahead=0x00020000
-filesystem mounted on /home/user/sources/fuse-mount-hyperdrive/mnt1
+filesystem mounted on /home/user/fuse-mount-hyperdrive/mnt1
 Awaiting initialization...
 Awaiting drive readiness...
    INIT: 7.19
@@ -69,9 +69,14 @@ waiting for swarm connection...
 swarm connection done.
 ```
 
-Now in another terminal, you can use the folder as normal.
+Now in another terminal, you can see the folder is mounted:
 
-Listing:
+```
+user@pc:~/fuse-mount-hyperdrive$ mount | grep mnt
+/dev/fuse on /home/user/fuse-mount-hyperdrive/mnt1 type fuse (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
+```
+
+Directory listing:
 
 ```
 user@pc:~/fuse-mount-hyperdrive$ ls -al mnt1/`
@@ -135,7 +140,7 @@ unique: 1, opcode: INIT (26), nodeid: 0, insize: 56, pid: 0
 INIT: 7.27
 flags=0x003ffffb
 max_readahead=0x00020000
-filesystem mounted on /home/user/sources/fuse-mount-hyperdrive/mnt1
+filesystem mounted on /home/user/fuse-mount-hyperdrive/mnt1
 Awaiting initialization...
 initializing with driveKey 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86
 Awaiting drive readiness...
