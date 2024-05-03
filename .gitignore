@@ -1,0 +1,7 @@
+trash/
+cache*/
+mnt*/
+storage/
+node_modules/
+
+notes.txt
