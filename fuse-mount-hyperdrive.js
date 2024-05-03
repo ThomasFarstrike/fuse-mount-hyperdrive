@@ -31,7 +31,19 @@ const ops = {
     return process.nextTick(cb, 0, files)
   },
   getattr: async function (path, cb) {
-    if (path !== '/' && await drive.exists(path)) {
+    if (path === '/') {
+      console.log("it's the root directory");
+        return process.nextTick(cb, 0, {
+          mtime: new Date(),
+          atime: new Date(),
+          ctime: new Date(),
+          nlink: 1,
+          size: 100,
+          mode: 16877,
+          uid: process.getuid ? process.getuid() : 0,
+          gid: process.getgid ? process.getgid() : 0
+        });
+    } else if (await drive.exists(path)) {
       const entry = await drive.entry(path)
       console.log("got entry: ");
       console.dir(entry);
@@ -47,24 +59,24 @@ const ops = {
         uid: process.getuid ? process.getuid() : 0,
         gid: process.getgid ? process.getgid() : 0
       });
-    } else if (path === '/' || (await drive.readdir(path))) {
-      console.log("it's a directory");
-      const iterator = await drive.readdir(path)
-      for await (const dirent of iterator) {
-        console.dir(dirent);
-        // if there's at least one entry then this is a directory
-        return process.nextTick(cb, 0, {
-          mtime: new Date(),
-          atime: new Date(),
-          ctime: new Date(),
-          nlink: 1,
-          size: 100,
-          mode: 16877,
-          uid: process.getuid ? process.getuid() : 0,
-          gid: process.getgid ? process.getgid() : 0
-        });
-      }
     }
+    // Try to iterate and if there's at least one entry then it's a directory
+    const iterator = await drive.readdir(path)
+    for await (const dirent of iterator) {
+      console.dir(dirent);
+      // if there's at least one entry then this is a directory
+      return process.nextTick(cb, 0, {
+        mtime: new Date(),
+        atime: new Date(),
+        ctime: new Date(),
+        nlink: 1,
+        size: 100,
+        mode: 16877,
+        uid: process.getuid ? process.getuid() : 0,
+        gid: process.getgid ? process.getgid() : 0
+      });
+    }
+    // if everything fails then it doesn't exist
     return process.nextTick(cb, Fuse.ENOENT);
   },
   open: function (path, flags, cb) {
