@@ -1,19 +1,7 @@
 This is a quick-and-dirty proof-of-concept of mounting a Hyperdrive to a local folder.
 
 See https://docs.pears.com/building-blocks/hyperdrive
-
 It uses the awesome https://github.com/fuse-friends/fuse-native
-
-Supported operations:
-- creating files
-- reading files
-- writing files
-- removing files
-- creating directories (including empty ones)
-- listing directories
-
-TODO:
-- add symlink support
 
 Create by Thomas Farstrike <thomasverstreken@protonmail.com>
 
@@ -26,6 +14,29 @@ Example: node cache1 mnt1 // to create a new writable hyperdrive, cached in cach
 Example: node cache2 mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 // to mount an existing hyperdrive in read-only mode at mnt2/
 
 NOTE: storageDir and mountDir will be created if they don't exist.
+
+# What works
+
+The following low-level filesystem operations are supported:
+- create: creating files
+- read: reading files
+- write: writing files
+- unlink: removing files
+- mkdir: creating directories (including empty ones)
+- rmdir: removing directories
+- readdir: listing directories
+
+Supported operating sytems:
+- Linux (tested on Debian with kernel 4.19.x)
+- MacOS (untested but should work)
+
+# TODO's
+
+- add symbolic link support (if anyone needs it)
+- add executable file support
+- add support for Microsoft Windows operating sytem (if anyone needs it)
+
+
 
 # Examples
 
