@@ -1,4 +1,4 @@
-This is a quick proof-of-concept of mounting a Hyperdrive to a local folder.
+This tools allows you to mount a Hyperdrive to a local folder using FUSE (Filesystem in UserSpacE).
 
 See https://docs.pears.com/building-blocks/hyperdrive
 It uses the awesome https://github.com/fuse-friends/fuse-native
