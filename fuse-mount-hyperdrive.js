@@ -115,8 +115,8 @@ const ops = {
 
 function parse_args() {
   console.error("Usage: node " + process.argv[1] + " cacheDir mountDir [driveKeyHex]");
-  console.error("Example: node " + process.argv[1] + " cache1 mnt1 // to create a new writable hyperdrive, cached in cache1/ and mounted at mnt1/");
-  console.error("Example: node " + process.argv[1] + " cache2 mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 // to mount an existing hyperdrive in read-only mode at mnt2/");
+  console.error("Example: node " + process.argv[1] + " cache1 mnt1 # to create a new writable hyperdrive, cached in cache1/ and mounted at mnt1/");
+  console.error("Example: node " + process.argv[1] + " cache2 mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 # to mount an existing hyperdrive in read-only mode at mnt2/");
   console.error("NOTE: storageDir and mountDir will be created if they don't exist.");
 
   if (process.argv.length < 4) {
