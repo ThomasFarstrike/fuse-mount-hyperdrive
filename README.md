@@ -7,13 +7,13 @@ Create by Thomas Farstrike <thomasverstreken@protonmail.com>
 
 # Usage
 
-Usage: node cacheDir mountDir [driveKeyHex]
+Usage: node mountDir [driveKeyHex]
 
-Example: node cache1 mnt1 // to create a new writable hyperdrive, cached in cache1/ and mounted at mnt1/
+Example: node mnt1 // to create a new writable hyperdrive, mounted at mnt1/
 
-Example: node cache2 mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 // to mount an existing hyperdrive in read-only mode at mnt2/
+Example: node mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 // to mount an existing hyperdrive in read-only mode at mnt2/
 
-NOTE: storageDir and mountDir will be created if they don't exist.
+NOTE: mountDir will be created if they don't exist.
 
 # What works
 
@@ -42,7 +42,7 @@ Supported operating sytems:
 
 ## Create a new hyperdrive and mount it
 
-`user@pc:~/fuse-mount-hyperdrive$ node fuse-mount-hyperdrive.js cache1 mnt1`
+`user@pc:~/fuse-mount-hyperdrive$ node fuse-mount-hyperdrive.js mnt1`
 
 ```
 Mounting drive...
@@ -112,7 +112,7 @@ total 0
 ## Mirror and mount that drive somewhere else:
 
 ```
-user@pc:~/fuse-mount-hyperdrive$ node fuse-mount-hyperdrive.js cache2 mnt2 e855ada003468d1010301ebc6c0effd11f2b4e25b5f2d67245515950e2f93d39
+user@pc:~/fuse-mount-hyperdrive$ node fuse-mount-hyperdrive.js mnt2 e855ada003468d1010301ebc6c0effd11f2b4e25b5f2d67245515950e2f93d39
 ```
 
 The new mount point will join the swarm and synchronize the Hyperdrive:
@@ -126,7 +126,7 @@ TESTING
 
 Mount it:
 
-`user@pc:~/fuse-mount-hyperdrive$ node fuse-mount-hyperdrive.js cache1 mnt1 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86`
+`user@pc:~/fuse-mount-hyperdrive$ node fuse-mount-hyperdrive.js mnt1 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86`
 
 Output:
 

@@ -7,11 +7,11 @@ const Fuse = require('fuse-native')
 const Hyperdrive = require('hyperdrive')
 const Hyperswarm = require('hyperswarm')
 const Corestore = require('corestore')
+const ram = require('random-access-memory')
 
 const emptyDirFile = ".emptyDirFile_to_be_able_to_create_empty_directories";
 
 var drive;
-var storageDir;
 var mountDir;
 var driveKey;
 var driveDiscoveryKey;
@@ -114,30 +114,29 @@ const ops = {
 }
 
 function parse_args() {
-  console.error("Usage: node " + process.argv[1] + " cacheDir mountDir [driveKeyHex]");
-  console.error("Example: node " + process.argv[1] + " cache1 mnt1 # to create a new writable hyperdrive, cached in cache1/ and mounted at mnt1/");
-  console.error("Example: node " + process.argv[1] + " cache2 mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 # to mount an existing hyperdrive in read-only mode at mnt2/");
-  console.error("NOTE: storageDir and mountDir will be created if they don't exist.");
+  console.error("Usage: node " + process.argv[1] + " mountDir [driveKeyHex]");
+  console.error("Example: node " + process.argv[1] + " mnt1 # to create a new writable hyperdrive, mounted at mnt1/");
+  console.error("Example: node " + process.argv[1] + " mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 # to mount an existing hyperdrive in read-only mode at mnt2/");
+  console.error("NOTE: mountDir will be created if they don't exist.");
 
-  if (process.argv.length < 4) {
+  if (process.argv.length < 3) {
     process.exit(1);
   }
 
-  storageDir = process.argv[2];
-  mountDir = process.argv[3];
+  mountDir = process.argv[2];
 
-  if (process.argv[4]) {
+  if (process.argv[3]) {
     console.log('driveKey is present.');
-    driveKey = process.argv[4];
+    driveKey = process.argv[3];
   }
-  if (process.argv[5]) {
+  if (process.argv[4]) {
     console.log('discoveryKey is present.');
-    discoveryKey = process.argv[5];
+    discoveryKey = process.argv[4];
   }
 }
 
 async function init() {
-  const store = new Corestore(storageDir)
+  const store = new Corestore(ram)
   if (driveKey) {
     console.log("initializing with driveKey " + driveKey);
     drive = new Hyperdrive(store, driveKey);
