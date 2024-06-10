@@ -5,13 +5,24 @@ It uses the awesome https://github.com/fuse-friends/fuse-native
 
 Create by Thomas Farstrike <thomasverstreken@protonmail.com>
 
+# Installation
+
+Tested with Node.js v16.17.1 but newer versions should also work.
+
+Install the required dependencies from package.json with:
+
+```
+npm install
+```
+
+
 # Usage
 
-Usage: node mountDir [driveKeyHex]
+Usage: node fuse-mount-hyperdrive.js mountDir [driveKeyHex]
 
-Example: node mnt1 // to create a new writable hyperdrive, mounted at mnt1/
+Example: node fuse-mount-hyperdrive.js mnt1 // to create a new writable hyperdrive, mounted at mnt1/
 
-Example: node mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 // to mount an existing hyperdrive in read-only mode at mnt2/
+Example: node fuse-mount-hyperdrive.js mnt2 4b3278fc44e9716c0342715f42e314050a3c825a51056ac53ee8170986a8bb86 // to mount an existing hyperdrive in read-only mode at mnt2/
 
 NOTE: mountDir will be created if they don't exist.
 
